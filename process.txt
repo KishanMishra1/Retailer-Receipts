@@ -1,0 +1,23 @@
+1. activate virtual env : source venv/bin/activate
+2. create labels.txt : grep -REoh '<name>.*</name>' ./annotated_img | sort | uniq
+3. create paths_train.txt : find ./annotated_img/Train/*.xml > paths_train.txt   
+4. create paths_test.txt : find ./annotated_img/Test/*.xml > paths_test.txt 
+5. create paths_valid.txt : find ./annotated_img/Valid/*.xml > paths_valid.txt
+6. create output_train.json :   python trial.py \
+                                --ann_paths_list ./paths_train.txt \
+                                --labels ./labels.txt \
+                                --output ./output_train.json \
+                                --ext xml
+
+7. create output_test.json :   python trial.py \
+                                --ann_paths_list ./paths_test.txt \
+                                --labels ./labels.txt \
+                                --output ./output_test.json \
+                                --ext xml
+
+8. create output_valid.json :   python trial.py \
+                                --ann_paths_list ./paths_valid.txt \
+                                --labels ./labels.txt \
+                                --output ./output_valid.json \
+                                --ext xml
+
